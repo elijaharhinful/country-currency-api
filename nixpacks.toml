@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['...', 'cairo', 'pango', 'libjpeg', 'giflib', 'librsvg', 'pixman']
+nixPkgs = ['...', 'cairo', 'pango', 'libjpeg', 'giflib', 'librsvg', 'pixman','fontconfig','dejavu_fonts']
 
 [phases.install]
 cmds = ['npm install']

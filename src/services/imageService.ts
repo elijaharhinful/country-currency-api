@@ -28,19 +28,19 @@ export class ImageService {
 
     // Title
     ctx.fillStyle = "#eee";
-    ctx.font = "bold 32px Arial";
+    ctx.font = "bold 32px 'DejaVu Sans', sans-serif";
     ctx.fillText("Country Data Summary", 50, 60);
 
     // Total countries
-    ctx.font = "24px Arial";
+    ctx.font = "24px 'DejaVu Sans', sans-serif";
     ctx.fillText(`Total Countries: ${data.totalCountries}`, 50, 120);
 
     // Top 5 countries
-    ctx.font = "bold 28px Arial";
+    ctx.font = "bold 28px 'DejaVu Sans', sans-serif";
     ctx.fillStyle = "#16c784";
     ctx.fillText("Top 5 Countries by GDP", 50, 180);
 
-    ctx.font = "20px Arial";
+    ctx.font = "20px 'DejaVu Sans', sans-serif";
     ctx.fillStyle = "#eee";
     data.topCountries.forEach((country, index) => {
       const gdp = country.estimated_gdp.toLocaleString("en-US", {
@@ -55,7 +55,7 @@ export class ImageService {
     });
 
     // Timestamp
-    ctx.font = "18px Arial";
+    ctx.font = "18px 'DejaVu Sans', sans-serif";
     ctx.fillStyle = "#888";
     ctx.fillText(`Last Updated: ${data.timestamp}`, 50, 520);
 
