@@ -1,4 +1,4 @@
-import { createCanvas } from "canvas";
+import { createCanvas, registerFont } from "canvas";
 import fs from "fs";
 import path from "path";
 
@@ -11,6 +11,23 @@ interface ImageData {
 export class ImageService {
   private cacheDir = path.join(__dirname, "../../cache");
   private imagePath = path.join(this.cacheDir, "summary.png");
+  
+  constructor() {
+    const fontsDir = path.join(process.cwd(), "/assets/fonts");
+    
+    try {
+      registerFont(path.join(fontsDir, "DejaVuSans.ttf"), { 
+        family: "DejaVu Sans" 
+      });
+      registerFont(path.join(fontsDir, "DejaVuSans-Bold.ttf"), { 
+        family: "DejaVu Sans", 
+        weight: "bold" 
+      });
+      console.log("Fonts registered successfully");
+    } catch (error) {
+      console.error("Font registration failed:", error);
+    }
+  }
 
   async generateSummaryImage(data: ImageData): Promise<void> {
     if (!fs.existsSync(this.cacheDir)) {
@@ -28,19 +45,19 @@ export class ImageService {
 
     // Title
     ctx.fillStyle = "#eee";
-    ctx.font = "bold 32px 'DejaVu Sans', sans-serif";
+    ctx.font = "bold 32px 'DejaVu Sans'";
     ctx.fillText("Country Data Summary", 50, 60);
 
     // Total countries
-    ctx.font = "24px 'DejaVu Sans', sans-serif";
+    ctx.font = "24px 'DejaVu Sans'";
     ctx.fillText(`Total Countries: ${data.totalCountries}`, 50, 120);
 
     // Top 5 countries
-    ctx.font = "bold 28px 'DejaVu Sans', sans-serif";
+    ctx.font = "bold 28px 'DejaVu Sans'";
     ctx.fillStyle = "#16c784";
     ctx.fillText("Top 5 Countries by GDP", 50, 180);
 
-    ctx.font = "20px 'DejaVu Sans', sans-serif";
+    ctx.font = "20px 'DejaVu Sans'";
     ctx.fillStyle = "#eee";
     data.topCountries.forEach((country, index) => {
       const gdp = country.estimated_gdp.toLocaleString("en-US", {
@@ -55,7 +72,7 @@ export class ImageService {
     });
 
     // Timestamp
-    ctx.font = "18px 'DejaVu Sans', sans-serif";
+    ctx.font = "18px 'DejaVu Sans'";
     ctx.fillStyle = "#888";
     ctx.fillText(`Last Updated: ${data.timestamp}`, 50, 520);
 

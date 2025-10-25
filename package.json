@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "build": "npm install --build-from-source && tsc",
+    "build": "tsc && cp -r assets/fonts dist/assets/fonts",
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
