@@ -120,7 +120,7 @@ export class CountryController {
         return res.status(404).json({ error: 'Country not found' });
       }
 
-      res.json({ message: `Country(${name}) deleted successfully` });
+      res.status(204).send();
     } catch (error) {
       console.error('Delete error:', error);
       res.status(500).json({ error: 'Internal server error' });
